@@ -1,0 +1,47 @@
+<div>
+    <el-table :data="tableData5" stripe style="width: 100%" row-key="feedbackId" :expand-row-keys="expands" @row-click="rowClick">
+        <el-table-column type="expand">
+            <template slot-scope="props">
+        <el-form label-position="left" inline class="demo-table-expand">
+          <el-form-item label="用户ID">
+            <span>{{ props.row.userId }}</span>
+          </el-form-item>
+          <el-form-item label="用户名称">
+            <span>{{ props.row.name }}</span>
+          </el-form-item>
+          <el-form-item label="描述" >
+            <span>{{ props.row.content }}</span>
+          </el-form-item>
+          <el-form-item label="设备型号">
+            <span>{{ props.row.deviceModel }}</span>
+          </el-form-item>
+          <el-form-item label="系统版本">
+            <span>{{ props.row.systemVersion }}</span>
+          </el-form-item>
+          <el-form-item label="ethAddress">
+            <span>{{ props.row.ethAddress }}</span>
+          </el-form-item>
+          <el-form-item label="Email">
+            <span>{{ props.row.mailAddress }}</span>
+          </el-form-item>
+          <el-form-item label="feedbackImages">
+            <el-button v-if="props.row.feedbackImages.length" type="text" v-for="(item, index) in props.row.feedbackImages" v-bind:key="index" @click="dialogVisible = true;currentImageIndex=index">images{{index}} </el-button>
+            <span v-if="!props.row.feedbackImages.length">暂无反馈图片</span>
+            <el-dialog v-if="props.row.feedbackImages.length" title="反馈图片" :visible.sync="dialogVisible" fullscreen="true" close-on-click-modal="true"	top="0vh">
+                <img v-if="props.row.feedbackImages.length" :src="props.row.feedbackImages[currentImageIndex].imageName" />
+            </el-dialog>
+            <!-- <span v-for="(item, index) in props.row.feedbackImages" v-bind:key="index" v-bind:target="_blank"><a v-bind:href="item.imageName">images{{index}}</a></span> -->
+          </el-form-item>
+        </el-form>
+      </template>
+        </el-table-column>
+        <el-table-column label="用户ID" prop="userId">
+        </el-table-column>
+        <el-table-column label="用户名称" prop="name">
+        </el-table-column>
+        <el-table-column label="描述" prop="content">
+        </el-table-column>
+        <el-table-column label="设备型号" prop="deviceModel">
+        </el-table-column>
+    </el-table>
+</div>
